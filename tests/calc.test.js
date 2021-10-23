@@ -50,7 +50,7 @@ describe('Calculator', () => {
     it('should return Infinity if the denominator is zero', () => {
       expect(4 / 0).to.equal(Infinity);
       expect(50 / 0).to.equal(Infinity);
-      expect(-15 / 0).to.equal(-Infinity);
+      expect(-15 / 0).to.equal(Infinity);
     });
   });
 });

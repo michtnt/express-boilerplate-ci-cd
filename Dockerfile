@@ -1,5 +1,3 @@
-USER root
-
 FROM ubuntu-latest
 FROM node:14
 

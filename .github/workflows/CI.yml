@@ -6,7 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [master]
+  pull_request:
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,20 +28,21 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install Dependencies
         run: yarn
-      
+
       - name: Lint
         run: yarn lint
-        
+
       - name: Test
         run: yarn mocha
-        
+
         env:
           CI: false
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }} # https://github.com/AkhileshNS/heroku-deploy/issues/35#issuecomment-922254638
-          
+
       - name: Deploy
+        if: github.event_name == 'push'
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "express-boilerplate-ci-cd" # Must be unique in Heroku
+          heroku_app_name: 'express-boilerplate-ci-cd' # Must be unique in Heroku
           heroku_email: ${{secrets.PERSONAL_EMAIL}}

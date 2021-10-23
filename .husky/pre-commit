@@ -1,4 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx lint-staged
+# https://github.com/typicode/husky
+yarn test # test
+npx lint-staged # run eslint and prettier only on staged file https://github.com/okonet/lint-staged

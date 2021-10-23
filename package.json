@@ -5,8 +5,9 @@
   "scripts": {
     "start": "node app.js",
     "start:dev": "nodemon app.js",
-    "test": "yarn mocha tests/*.js",
-    "lint": "eslint .",
+    "test": "yarn lint && yarn mocha",
+    "lint": "eslint . --config .eslintrc.js",
+    "mocha": "mocha tests/*.js",
     "prepare": "husky install"
   },
   "dependencies": {

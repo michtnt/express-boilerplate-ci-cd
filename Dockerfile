@@ -12,5 +12,4 @@ RUN yarn global add nodemon
 
 # bundle app source
 COPY . .
-EXPOSE 8080
 CMD yarn start:dev

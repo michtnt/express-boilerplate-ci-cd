@@ -1,3 +1,4 @@
+# not ubuntu-latest! but ubuntu:latest!
 FROM ubuntu
 FROM node
 

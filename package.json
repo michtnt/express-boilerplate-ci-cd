@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node app.js",
     "start:dev": "nodemon app.js",
-    "start:docker": "docker build . -t express-boilerplate-docker && docker run -p 3001:80 express-boilerplate-docker",
+    "start:docker-dev": "docker build -t express-boilerplate-docker-dev -f  Dockerfile.dev . && docker run -p 3001:80 express-boilerplate-docker",
+    "start:docker-prod": "docker build -t express-boilerplate-docker-prod -f . && docker run -p 3001:80 express-boilerplate-docker",
     "test": "yarn lint && yarn mocha",
     "lint": "eslint . --config .eslintrc.js",
     "mocha": "mocha tests/*.js",

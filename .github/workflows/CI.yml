@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [master]
+    branches: [dev, master]
   pull_request:
     branches: [master]
 
@@ -39,12 +39,40 @@ jobs:
           CI: false
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }} # https://github.com/AkhileshNS/heroku-deploy/issues/35#issuecomment-922254638
 
-      - name: Deploy
-        if: github.event_name == 'push' # https://stackoverflow.com/questions/63220262/github-workflow-one-job-for-each-different-git-actions-push-on-master-push-t
+      - name: Deploy (Development) # i think can't use conditional if statement in parameter
+        if: github.event_name == 'push' && github.ref == 'refs/heads/dev' # https://stackoverflow.com/questions/63220262/github-workflow-one-job-for-each-different-git-actions-push-on-master-push-t
         uses: gonuit/heroku-docker-deploy@v1.3.3 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'express-boilerplate-ci-cd' # Must be unique in Heroku
+          email: ${{secrets.PERSONAL_EMAIL}}
+
+          # (Optional, default: "./")
+          # Dockerfile directory.
+          # For example, if you have a Dockerfile in the root of your project, leave it as follows:
+          dockerfile_directory: ./
+
+          # (Optional, default: "Dockerfile")
+          # Dockerfile name.
+          dockerfile_name: Dockerfile.dev
+
+          # (Optional, default: "")
+          # Additional options of docker build command.
+          docker_options: ''
+
+          # (Optional, default: "web")
+          # Select the process type for which you want the docker container to be uploaded.
+          # By default, this argument is set to "web".
+          # For more information look at https://devcenter.heroku.com/articles/process-model
+          process_type: web
+      
+      
+      - name: Deploy (Production) # i think can't use conditional if statement in parameter
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' # https://stackoverflow.com/questions/63220262/github-workflow-one-job-for-each-different-git-actions-push-on-master-push-t
+        uses: gonuit/heroku-docker-deploy@v1.3.3 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: 'express-boilerplate-prod' # Must be unique in Heroku
           email: ${{secrets.PERSONAL_EMAIL}}
 
           # (Optional, default: "./")

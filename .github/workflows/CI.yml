@@ -41,11 +41,27 @@ jobs:
 
       - name: Deploy
         if: github.event_name == 'push' # https://stackoverflow.com/questions/63220262/github-workflow-one-job-for-each-different-git-actions-push-on-master-push-t
-        uses: jctaveras/heroku-deploy@v1.0.0 # This is the action
+        uses: gonuit/heroku-docker-deploy@v1.3.3 # This is the action
         with:
-          api_key: ${{secrets.HEROKU_API_KEY}}
-          app_name: 'express-boilerplate-ci-cd' # Must be unique in Heroku
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: 'express-boilerplate-ci-cd' # Must be unique in Heroku
           email: ${{secrets.PERSONAL_EMAIL}}
-          dockerfile_path: '.' # set the path to the folder where the Dockerfile is located
-          options: '' # Docker Build Options
-          formation: '' # Docker Dyno Formation. By default is web
+
+          # (Optional, default: "./")
+          # Dockerfile directory.
+          # For example, if you have a Dockerfile in the root of your project, leave it as follows:
+          dockerfile_directory: ./
+
+          # (Optional, default: "Dockerfile")
+          # Dockerfile name.
+          dockerfile_name: Dockerfile
+
+          # (Optional, default: "")
+          # Additional options of docker build command.
+          docker_options: ''
+
+          # (Optional, default: "web")
+          # Select the process type for which you want the docker container to be uploaded.
+          # By default, this argument is set to "web".
+          # For more information look at https://devcenter.heroku.com/articles/process-model
+          process_type: web

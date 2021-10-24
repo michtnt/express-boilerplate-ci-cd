@@ -6,7 +6,7 @@
 2. Commit successful, Trigger Github Actions on push to `master` branch, runs on `ubuntu-latest`
 3. Run Lint (`ESlint` to find potential bugs, `Prettier` for code formatting)
 4. Run Test (`Mocha` and `Chai`)
-5. Deploy `Docker` image to `Heroku` (container has same stack [```ubuntu-latest```] with `Heroku` stack)
+5. Deploy `Docker` image to `Heroku` (container has same stack [```ubuntu-latest```] with `Heroku` stack) \\
 6. (Optional) Run `yarn test` on docker, not really needed since Github Actions CI environment is also `ubuntu-latest`, same environment as Docker and Heroku
 
 ## PR
@@ -51,6 +51,8 @@ https://stackoverflow.com/questions/67257142/run-github-action-when-pushing-to-a
 https://devcenter.heroku.com/articles/procfile#procfile-and-heroku-yml
 
 set stack as container: `heroku stack:set container --app express-boilerplate-ci-cd`
+dev app logs: `heroku logs --app=express-boilerplate-dev`
+prod app logs: `heroku logs --app=express-boilerplate-prod`
 https://stackoverflow.com/questions/52630404/how-to-install-packages-based-on-the-lock-file-with-yarn
 https://stackoverflow.com/questions/30256386/how-to-copy-multiple-files-in-one-layer-using-a-dockerfile
 https://stackoverflow.com/questions/42040317/cannot-find-module-for-a-node-js-app-running-in-a-docker-compose-environment

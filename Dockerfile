@@ -1,6 +1,5 @@
-# FROM ubuntu-latest
-# FROM node:14-alpine
-FROM rbecheras/ubuntu-node:latest
+FROM ubuntu
+FROM node
 
 # user permission
 # RUN chown -R node:node /usr/src/app

@@ -19,7 +19,7 @@
 6. Deploy `Docker` image to `Heroku` (container has same stack [```ubuntu-latest```] with `Heroku` stack)
 7. (Optional) Run `yarn test` on docker, not really needed since Github Actions CI environment is also `ubuntu-latest`, same environment as Docker and Heroku
 
-Note: If ``dev``` branch, use Dev Dockerfile and push to Dev Heroku app in project pipeline, if ```prod``` use otherwise.
+Note: If ```dev``` branch, use Dev Dockerfile and push to Dev Heroku app in project pipeline, if ```prod``` use otherwise.
 
 # Tools
 

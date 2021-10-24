@@ -6,7 +6,7 @@
 2. Commit successful, Trigger Github Actions on push to `master` branch, runs on `ubuntu-latest`
 3. Run Lint (`ESlint` to find potential bugs, `Prettier` for code formatting)
 4. Run Test (`Mocha` and `Chai`)
-5. Deploy `Docker` image to `Heroku` (container has same stack [```ubuntu-latest```] with `Heroku` stack) \\
+5. Deploy `Docker` image to `Heroku` (container has same stack [```ubuntu-latest```] with `Heroku` stack)
 6. (Optional) Run `yarn test` on docker, not really needed since Github Actions CI environment is also `ubuntu-latest`, same environment as Docker and Heroku
 
 ## PR
@@ -18,6 +18,8 @@
 5. Merge Pull Request
 6. Deploy `Docker` image to `Heroku` (container has same stack [```ubuntu-latest```] with `Heroku` stack)
 7. (Optional) Run `yarn test` on docker, not really needed since Github Actions CI environment is also `ubuntu-latest`, same environment as Docker and Heroku
+
+Note: If ``dev``` branch, use Dev Dockerfile and push to Dev Heroku app in project pipeline, if ```prod``` use otherwise.
 
 # Tools
 

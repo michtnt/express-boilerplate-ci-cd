@@ -14,7 +14,8 @@ COPY package.json yarn.lock ./
 
 # https://stackoverflow.com/questions/52630404/how-to-install-packages-based-on-the-lock-file-with-yarn
 RUN yarn install --frozen-lockfile
+RUN yarn global add nodemon
 
 # bundle app source
 COPY . .
-CMD yarn start
+CMD yarn start:dev
